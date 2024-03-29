@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ghost
+  - Altar
+  - FireBall
+  - FireSlash
+  - WaveUI
   layers:
   - Default
   - TransparentFX
@@ -11,23 +16,23 @@ TagManager:
   - 
   - Water
   - UI
+  - FarBackground
+  - 
+  - 
+  - 
+  - BackGround
+  - PropsButNoCollision
+  - WalkingLayer
+  - 
+  - Ghost Layer
+  - ArmSpellCollider
+  - ArmSpellLayer
+  - UpperLayer
   - 
   - 
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - Layer 1
-  - Layer 2
-  - Layer 3
   - 
   - 
   - 
@@ -41,12 +46,27 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Layer 1
+  - name: FarBackground
+    uniqueID: 2206805353
+    locked: 0
+  - name: BackGround
     uniqueID: 2425651459
     locked: 0
-  - name: Layer 2
+  - name: PropsButNoCollision
     uniqueID: 4250941897
     locked: 0
-  - name: Layer 3
+  - name: WalkingLayer
     uniqueID: 4189426099
+    locked: 0
+  - name: Ghost Layer
+    uniqueID: 3266005537
+    locked: 0
+  - name: ArmSpellLayer
+    uniqueID: 1334431415
+    locked: 0
+  - name: UpperLayer
+    uniqueID: 1922758093
+    locked: 0
+  - name: UI
+    uniqueID: 488776875
     locked: 0
