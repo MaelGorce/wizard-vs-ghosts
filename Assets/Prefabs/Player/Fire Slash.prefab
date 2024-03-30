@@ -124,7 +124,8 @@ MonoBehaviour:
   damage: 10
   speed: 3
   coolDown: 1
-  spellNumber: 0
+  size: 1
+  spellNumber: 2
 --- !u!68 &-8701647186725283815
 EdgeCollider2D:
   m_ObjectHideFlags: 0

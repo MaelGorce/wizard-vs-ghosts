@@ -61,11 +61,9 @@ public class PlayerController : MonoBehaviour
                 if (!isAttackingSpell1)
                 {
                     animator.SetTrigger("attack");
-                    audioManager.PlaySpellAudioClip(1);
                     isAttackingSpell1 = true;
                     StartCoroutine(CoolDownSpell1(Spell1.GetComponent<Spell>().coolDown));
                     StartCoroutine(Spell1Delayed(0.22f, GetAngleSpell()));
-                    //Invoke("Spell1Delayed", 0.22f);
                 }
 
             }
@@ -75,12 +73,9 @@ public class PlayerController : MonoBehaviour
                 if(!isAttackingSpell2)
                 {
                     animator.SetTrigger("attack02");
-                    audioManager.PlaySpellAudioClip(2);
                     isAttackingSpell2 = true;
                     StartCoroutine(CoolDownSpell2(Spell2.GetComponent<Spell>().coolDown));
                     StartCoroutine(Spell2Delayed(0.32f, GetAngleSpell()));
-
-                    //Invoke("Spell2Delayed", 0.32f);
                 }
             }
         }
@@ -156,10 +151,10 @@ public class PlayerController : MonoBehaviour
             m_hp += hp;
     }
     // Upgrades 
-    public void UpgradeHP(int hp)
+    public void UpgradeHP(float percent)
     {
-        hpMax += hp;
-        m_hp += hp;
+        hpMax *= percent;
+        m_hp *= percent;
         hpBarScale.x = m_hp / hpMax;
         hpBarObject.GetComponent<RectTransform>().localScale = hpBarScale;
     }
@@ -170,16 +165,22 @@ public class PlayerController : MonoBehaviour
     // Spell1 = fireball
     // Spell2 = Fire Slash
     public void UpgradeCDSpell1(float percent)
-    { Spell1.GetComponent<Spell>().coolDown *= percent; }
+    { Spell1.GetComponent<Spell>().coolDown /= percent; }
     public void UpgradeCDSpell2(float percent)
-    { Spell2.GetComponent<Spell>().coolDown *= percent; }
+    { Spell2.GetComponent<Spell>().coolDown /= percent; }
     public void UpgradeDmgSpell1(float percent)
     { Spell1.GetComponent<Spell>().damage *= percent; }
     public void UpgradeDmgSpell2(float percent)
     { Spell2.GetComponent<Spell>().damage *= percent; }
     public void UpgradeSpeedSpell2(float percent)
     { Spell2.GetComponent<Spell>().speed *= percent; }
+    public void UpgradelivingDurationSpell1(float percent)
+    { Spell1.GetComponent<Spell>().livingDuration *= percent; }
     public void UpgradelivingDurationSpell2(float percent)
     { Spell2.GetComponent<Spell>().livingDuration *= percent; }
+    public void UpgradeSizeSpell1(float percent)
+    { Spell1.GetComponent<Spell>().size *= percent; }
+    public void UpgradeSizeSpell2(float percent)
+    { Spell2.GetComponent<Spell>().size *= percent; }
 
 }

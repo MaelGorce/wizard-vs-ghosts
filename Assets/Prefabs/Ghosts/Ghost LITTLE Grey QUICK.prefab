@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 1322527256482098024}
   - component: {fileID: 3272196136994400063}
   m_Layer: 14
-  m_Name: Ghost BIG Orange
+  m_Name: Ghost LITTLE Grey QUICK
   m_TagString: Ghost
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114,7 +114,7 @@ Transform:
   m_GameObject: {fileID: 6647369290224962261}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.94, y: -0.66, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6647369288697857802}
@@ -163,7 +163,7 @@ SpriteRenderer:
   m_SortingLayer: 6
   m_SortingOrder: 30
   m_Sprite: {fileID: 21300000, guid: ec47f75fe8aff1644ac73998f4ad31b5, type: 3}
-  m_Color: {r: 1, g: 0.6245951, b: 0.39999998, a: 0.8627451}
+  m_Color: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 0.8627451}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -231,8 +231,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8ab8899b69f3d7468f91755af5425c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.3
-  hpMax: 50
+  speed: 2
+  hpMax: 10
   damage: 20
 --- !u!50 &3272196136994400063
 Rigidbody2D:
@@ -246,7 +246,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0

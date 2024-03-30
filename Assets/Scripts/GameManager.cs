@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static Choice;
 
 public class GameManager : MonoBehaviour
 {
@@ -66,7 +67,6 @@ public class GameManager : MonoBehaviour
         isPlaying = false;
         Debug.Log("Game Over");
         gameOverScreen.SetActive(true);
-        //playingScreen.SetActive(false);
     }
     public void RestartGame()
     {
@@ -76,18 +76,17 @@ public class GameManager : MonoBehaviour
 
     public void ChoosingState(int intensity)
     {
-        GenerateUpgradeChoices(intensity);
         choosingScreen.SetActive(true);
+        GenerateUpgradeChoices(intensity);
         PauseGame(true);
     }
 
     private void GenerateUpgradeChoices(int intensity)
     {
-        // TODO generate 3 random choices
+        choosingScreen.GetComponent<ChoiceBuilder>().GenerateRandomChoices((EChoosingIntensity)((spawnManager.GetComponent<SpawnManager>().waveNumber -1) % (int)EChoosingIntensity.eIntensityMax));
     }
-    public void ChoiceUpgrade(int index)
+    public void ChoiceUpgradeMade()
     {
-        Debug.Log("Choice made number :" + index);
         PauseGame(false);
         choosingScreen.SetActive(false);
         isPlaying = true;

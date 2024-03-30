@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4127046393679920095}
   - component: {fileID: 7706625178507875988}
   m_Layer: 0
-  m_Name: Wave noobs and little
+  m_Name: Wave NB 13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8005baa8d33fca04ba8931f38c7e4412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingWaveAudioClip: {fileID: 8300000, guid: f9ec07fbf3f29f846add432cd70b3649,
+    type: 3}
+  spawningTime: 0.4
+  altarLoadingTime: 30
   waveSpawnValueOfGhosts:
-  - 10
+  - 3
+  - 1
   - 0
-  - 5
+  - 2
+  - 2

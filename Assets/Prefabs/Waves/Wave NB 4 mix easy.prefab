@@ -51,4 +51,6 @@ MonoBehaviour:
   waveSpawnValueOfGhosts:
   - 10
   - 1
+  - 0
   - 2
+  - 0

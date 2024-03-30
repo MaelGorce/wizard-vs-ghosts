@@ -46,9 +46,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingWaveAudioClip: {fileID: 8300000, guid: f9ec07fbf3f29f846add432cd70b3649,
     type: 3}
-  spawningTime: 0.5
+  spawningTime: 0.7
   altarLoadingTime: 30
   waveSpawnValueOfGhosts:
   - 10
+  - 2
   - 1
-  - 10
+  - 2
+  - 1

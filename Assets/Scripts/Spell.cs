@@ -8,13 +8,14 @@ public class Spell : MonoBehaviour
     public float damage;
     public float speed;
     public float coolDown;
+    public float size = 1.0f;
     public int spellNumber;
     protected AudioManager audioManager;
     protected GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
-
+        transform.localScale *= size;
     }
     protected void SpellInit()
     {

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4127046393679920095}
   - component: {fileID: 7706625178507875988}
   m_Layer: 0
-  m_Name: Wave hard mix 2
+  m_Name: Wave NB 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,11 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8005baa8d33fca04ba8931f38c7e4412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingWaveAudioClip: {fileID: 8300000, guid: e5d4b290450c42247bc15a2f5a2d87b9,
+  startingWaveAudioClip: {fileID: 8300000, guid: f9ec07fbf3f29f846add432cd70b3649,
     type: 3}
   spawningTime: 0.5
-  altarLoadingTime: 100
+  altarLoadingTime: 30
   waveSpawnValueOfGhosts:
-  - 3
+  - 6
+  - 2
   - 1
+  - 2
   - 2

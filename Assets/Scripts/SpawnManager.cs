@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 
@@ -12,6 +13,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private GameObject altarObject;
     [SerializeField] private GameObject altarBarObject;
     [SerializeField] private GameObject WaveUIObject;
+    [SerializeField] private TextMeshProUGUI WaveCountUI;
     private Altar altar;
     private Vector2[] spawningTombsPos;
     public int waveNumber = 0;
@@ -69,6 +71,7 @@ public class SpawnManager : MonoBehaviour
         ++waveNumber;
         Debug.Log("Starting Wave " + waveNumber);
         WaveUIObject.GetComponent<WaveUI>().DisplayWave(waveNumber);
+        WaveCountUI.text = "Wave " + waveNumber;
         //Wait before wave start
         altar.loading = 0;
         altar.LoadingTime = wavesConfig[waveNumber].altarLoadingTime;

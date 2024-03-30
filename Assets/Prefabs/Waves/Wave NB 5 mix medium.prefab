@@ -50,5 +50,7 @@ MonoBehaviour:
   altarLoadingTime: 30
   waveSpawnValueOfGhosts:
   - 10
-  - 1
   - 2
+  - 0
+  - 2
+  - 0
