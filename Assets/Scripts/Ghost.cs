@@ -13,33 +13,36 @@ public class Ghost : MonoBehaviour
     public float hpMax = 10;
     public float damage;
     private float hp;
-    private GameObject player;
+    static private GameObject player;
     private Vector2 lookDirection;
     private Animator animator;
-    private GameManager gameManager;
-    private TextMeshProUGUI ghostCountGUI;
     private float gammaMax;
     private UnityEngine.Color color;
     static private int ghostKilledCounter = 0;
+    static private TextMeshProUGUI ghostCountGUI;
+
+    //Optimized local variables
+
+    private float absX;
+    private float absY;
+    private float maxXY;
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         player = GameObject.FindWithTag("Player");
         animator = GetComponent<Animator>();
-        animator.SetBool("IsMoving", true);
         hp = hpMax;
         gammaMax = gameObject.GetComponent<SpriteRenderer>().color.a;
         color = gameObject.GetComponent<SpriteRenderer>().color;
-        ghostCountGUI = GameObject.Find("Ghost Count").GetComponent<TextMeshProUGUI>();
-        ghostCountGUI.text = "Ghost killed: " + ghostKilledCounter;
+        if (ghostCountGUI == null )
+            ghostCountGUI = GameObject.Find("Ghost Count").GetComponent<TextMeshProUGUI>();
+        ghostCountGUI.text = "Ghost killed : " + ghostKilledCounter;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // TODO if player is alive
-        if (player && gameManager.isPlaying)
+        if (GameManager.instance.isPlaying)
         {
             lookDirection = ((player.transform.position + (0.46f * Vector3.up))  - transform.position).normalized;
             SetAnimator(lookDirection);
@@ -53,9 +56,9 @@ public class Ghost : MonoBehaviour
     void SetAnimator(Vector2 Direction)
     {
         // Set animator acording to direction
-        float absX = Math.Abs(Direction.x);
-        float absY = Math.Abs(Direction.y);
-        float maxXY = Math.Max(absX,absY);
+        absX = Math.Abs(Direction.x);
+        absY = Math.Abs(Direction.y);
+        maxXY = Math.Max(absX,absY);
         if (maxXY == absX)
         {
             if(Direction.x < 0)
@@ -71,7 +74,7 @@ public class Ghost : MonoBehaviour
                 animator.SetInteger("Direction", 1);
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("FireBall"))
         {
@@ -88,7 +91,7 @@ public class Ghost : MonoBehaviour
         hp -= damage;
         if (hp <= 0)
         {
-            ghostCountGUI.text = "Ghost killed: " + ++ghostKilledCounter;
+            ghostCountGUI.text = "Ghost killed : " + ++ghostKilledCounter;
             Destroy(gameObject);
         }
         else

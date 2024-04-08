@@ -5,27 +5,29 @@ using UnityEngine;
 
 public class Altar : MonoBehaviour
 {
-    public float loading;
     public float LoadingTime;
+    [SerializeField] public float loading { get; private set; }
     private bool playerInAltar;
     void Start()
     {
-        loading = 0;
+        Reset();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        playerInAltar = true;
+        if(other.CompareTag("Player"))
+            playerInAltar = true;
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        playerInAltar = false;
+        if (other.CompareTag("Player"))
+            playerInAltar = false;
     }
 
     private void Update()
     {
-        if (playerInAltar)
+        if (playerInAltar && loading < LoadingTime)
         {
             loading += Time.deltaTime;
         }

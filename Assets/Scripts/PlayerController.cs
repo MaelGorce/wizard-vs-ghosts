@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -23,26 +24,24 @@ public class PlayerController : MonoBehaviour
     private Vector2 movingVector;
     private bool isAttackingSpell1 = false;
     private bool isAttackingSpell2 = false;
-    private Vector2 playerCenter = new Vector2 (0,0.6f);
+    private Vector2 playerCenter = new Vector2 (0,0.46f);
     private Vector3 spellAngle;
 
-    private AudioManager audioManager;
-    private GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
         movingVector = Vector2.zero;
         spellAngle = Vector3.zero;
-        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         m_hp = hpMax;
         hpBarScale = new Vector3(1, 1, 1);
+        Spell1.GetComponent<Spell>().StoreInitalValues();
+        Spell2.GetComponent<Spell>().StoreInitalValues();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (isAlive && gameManager.isPlaying)
+        if (isAlive && GameManager.instance.isPlaying)
         {
             movingVector.x = Input.GetAxis("Horizontal");
             movingVector.y = Input.GetAxis("Vertical");
@@ -70,6 +69,7 @@ public class PlayerController : MonoBehaviour
             else if (Input.GetMouseButton(0))
             {
                 //Left mouse click
+                // TODO : Is not on Pause button
                 if(!isAttackingSpell2)
                 {
                     animator.SetTrigger("attack02");
@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(coolDownTime);
         spellAngle.z = angle;
-        Instantiate(Spell1, (transform.position + (Vector3)playerCenter), Quaternion.Euler(spellAngle));
+        Instantiate(Spell1, (transform.position + (Vector3)playerCenter ), Quaternion.Euler(spellAngle));
     }
 
     IEnumerator Spell2Delayed(float coolDownTime, float angle)
@@ -126,14 +126,14 @@ public class PlayerController : MonoBehaviour
             {
                 isAlive = false;
                 rigidBody.velocity = Vector2.zero;
-                audioManager.PlayPlayerDeathAudioClip();
+                AudioManager.instance.PlayPlayerDeathAudioClip();
                 animator.SetTrigger("death");
-                gameManager.GameOver();
+                GameManager.instance.GameOver();
                 m_hp = 0;
             }
             else
             {
-                audioManager.PlayPlayerDamageAudioClip();
+                AudioManager.instance.PlayPlayerDamageAudioClip();
                 animator.SetTrigger("damage");
             }
 
@@ -172,8 +172,6 @@ public class PlayerController : MonoBehaviour
     { Spell1.GetComponent<Spell>().damage *= percent; }
     public void UpgradeDmgSpell2(float percent)
     { Spell2.GetComponent<Spell>().damage *= percent; }
-    public void UpgradeSpeedSpell2(float percent)
-    { Spell2.GetComponent<Spell>().speed *= percent; }
     public void UpgradelivingDurationSpell1(float percent)
     { Spell1.GetComponent<Spell>().livingDuration *= percent; }
     public void UpgradelivingDurationSpell2(float percent)

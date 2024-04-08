@@ -15,22 +15,25 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private GameObject[] upgradeChoices;
     [SerializeField] private GameObject spawnManager;
+    private bool isChoosing;
+    public EChoosingIntensity choiceIntensity { get; private set; }
+
+    public static GameManager instance { get; private set; }
 
     // Start is called before the first frame update
     void Start()
     {
-        isPlaying = false;
-        startingScreen.SetActive(true);
-        infoGameScreen.SetActive(true);
-        playingScreen.SetActive(false);
-        choosingScreen.SetActive(false);
-        gameOverScreen.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (instance == null)
+        {
+            instance = this;
+            isPlaying = false;
+            startingScreen.SetActive(true);
+            infoGameScreen.SetActive(true);
+            playingScreen.SetActive(false);
+            choosingScreen.SetActive(false);
+            gameOverScreen.SetActive(false);
+            isChoosing = false;
+        }
     }
 
     public void StartGame()
@@ -56,10 +59,13 @@ public class GameManager : MonoBehaviour
 
     public void PauseToggle()
     {
-        if (isPlaying)
-            PauseGame(true);
-        else
-            PauseGame(false);
+        if (!isChoosing)
+        {
+            if (isPlaying)
+                PauseGame(true);
+            else
+                PauseGame(false);
+        }
     }
 
     public void GameOver()
@@ -74,19 +80,18 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public void ChoosingState(int intensity)
+    public void ChoosingState(EChoosingIntensity intensity)
     {
-        choosingScreen.SetActive(true);
-        GenerateUpgradeChoices(intensity);
         PauseGame(true);
-    }
-
-    private void GenerateUpgradeChoices(int intensity)
-    {
-        choosingScreen.GetComponent<ChoiceBuilder>().GenerateRandomChoices((EChoosingIntensity)((spawnManager.GetComponent<SpawnManager>().waveNumber -1) % (int)EChoosingIntensity.eIntensityMax));
+        isChoosing = true;
+        choosingScreen.SetActive(true);
+        choiceIntensity = intensity;
+        if (ChoiceBuilder.instance)
+            ChoiceBuilder.instance.GenerateRandomChoices();
     }
     public void ChoiceUpgradeMade()
     {
+        isChoosing = false;
         PauseGame(false);
         choosingScreen.SetActive(false);
         isPlaying = true;

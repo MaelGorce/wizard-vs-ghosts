@@ -13,14 +13,23 @@ public class SpellMoving : Spell
     // Update is called once per frame
     void Update()
     {
-        if (gameManager.isPlaying)
-            transform.Translate(speed * Time.deltaTime * Vector2.up);
+        if(GameManager.instance)
+            if (GameManager.instance.isPlaying)
+                transform.Translate(speed * Time.deltaTime * Vector2.up);
     }
 
     IEnumerator TimeDestruction()
     {
         yield return new WaitForSeconds(livingDuration);
         Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (spellNumber == 1 && collision.CompareTag("PropsObstacle"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
 

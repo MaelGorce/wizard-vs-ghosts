@@ -12,6 +12,16 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource playerDamage;
     [SerializeField] private AudioSource playerDeath;
 
+    public static AudioManager instance { get; private set; }
+
+    void Start()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+
     public void PlayNarratorAudioClip(AudioClip clip)
     {
         narrator.clip = clip;

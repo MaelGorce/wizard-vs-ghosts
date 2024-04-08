@@ -9,6 +9,7 @@ TagManager:
   - FireBall
   - FireSlash
   - WaveUI
+  - PropsObstacle
   layers:
   - Default
   - TransparentFX

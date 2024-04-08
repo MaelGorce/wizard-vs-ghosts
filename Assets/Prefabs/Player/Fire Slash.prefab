@@ -27,14 +27,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8904617927863425487}
-  m_LocalRotation: {x: -0, y: -0, z: 0.68465066, w: 0.72887146}
-  m_LocalPosition: {x: -0.68, y: 0.15, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.14537854, w: 0.9893761}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 86.416}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 16.718}
 --- !u!212 &8904617927863425472
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -122,9 +122,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   livingDuration: 0.7
   damage: 10
-  speed: 3
-  coolDown: 1
+  speed: 2
+  coolDown: 1.5
   size: 1
+  alreadyLoadedInit: 0
   spellNumber: 2
 --- !u!68 &-8701647186725283815
 EdgeCollider2D:
@@ -136,7 +137,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

@@ -5,13 +5,17 @@ using UnityEngine;
 public class Spell : MonoBehaviour
 {
     public float livingDuration;
-    public float damage;
+    public float damage ;
     public float speed;
     public float coolDown;
     public float size = 1.0f;
-    public int spellNumber;
-    protected AudioManager audioManager;
-    protected GameManager gameManager;
+    private float livingDurationInit;
+    private float damageInit;
+    private float speedInit;
+    private float coolDownInit;
+    private float sizeInit;
+    public bool alreadyLoadedInit = false;
+    [SerializeField] protected int spellNumber;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,15 +23,38 @@ public class Spell : MonoBehaviour
     }
     protected void SpellInit()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-        audioManager.PlaySpellAudioClip(spellNumber);
-        StartCoroutine(TimeDestruction());
+        if(GameManager.instance.isPlaying)
+        {
+            AudioManager.instance.PlaySpellAudioClip(spellNumber);
+            StartCoroutine(TimeDestruction());
+        }
     }
 
     IEnumerator TimeDestruction()
     {
         yield return new WaitForSeconds(livingDuration);
-        Destroy(gameObject);
+        if (gameObject)
+            Destroy(gameObject);
+    }
+
+    public void StoreInitalValues()
+    {
+        if(alreadyLoadedInit)
+        {
+            livingDuration= livingDurationInit;
+            damage = damageInit;
+            speed = speedInit;
+            coolDown = coolDownInit;
+            size = sizeInit;
+        }
+        else
+        {
+            livingDurationInit = livingDuration;
+            damageInit = damage;
+            speedInit = speed;
+            coolDownInit = coolDown;
+            sizeInit = size;
+            alreadyLoadedInit = true;
+        }
     }
 }

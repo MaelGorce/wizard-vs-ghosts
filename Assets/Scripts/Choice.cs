@@ -12,7 +12,7 @@ public class Choice : MonoBehaviour
         eGold = 1,
         eRubis = 2,
         eDiamond = 3,
-        eIntensityMax
+        eIntensityMax = 4
     }
     public enum EChoosingAugment : ushort
     {
@@ -27,7 +27,6 @@ public class Choice : MonoBehaviour
         eSpell2Damage,
         eSpell2LivingDuration,
         eSpell2Size,
-        eSpell2Speed,
         eChoiceMax
     }
     public EChoosingIntensity intensity;
@@ -105,11 +104,6 @@ public class Choice : MonoBehaviour
                 break;
             case EChoosingAugment.eSpell2Size:
                 headerText = "Fire Slash Size";
-                descriptionText = "";
-                imageSprite = fireSlashSprite;
-                break;
-            case EChoosingAugment.eSpell2Speed:
-                headerText = "Fire Slash Speed";
                 descriptionText = "";
                 imageSprite = fireSlashSprite;
                 break;
@@ -202,8 +196,6 @@ public class Choice : MonoBehaviour
                 GameObject.Find("Player").GetComponent<PlayerController>().UpgradeDmgSpell1(GetPercentage()); break;
             case EChoosingAugment.eSpell2Damage:
                 GameObject.Find("Player").GetComponent<PlayerController>().UpgradeDmgSpell2(GetPercentage()); break;
-            case EChoosingAugment.eSpell2Speed:
-                GameObject.Find("Player").GetComponent<PlayerController>().UpgradeSpeedSpell2(GetPercentage()); break;
             case EChoosingAugment.eSpell1LivingDuration:
                 GameObject.Find("Player").GetComponent<PlayerController>().UpgradelivingDurationSpell1(GetPercentage()); break;
             case EChoosingAugment.eSpell2LivingDuration:
