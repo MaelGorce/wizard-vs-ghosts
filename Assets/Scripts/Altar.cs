@@ -6,6 +6,7 @@ using UnityEngine;
 public class Altar : MonoBehaviour
 {
     public float LoadingTime;
+    // ENCAPSULATION
     [SerializeField] public float loading { get; private set; }
     private bool playerInAltar;
     void Start()

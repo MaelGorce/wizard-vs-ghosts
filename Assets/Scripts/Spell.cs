@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spell : MonoBehaviour
+public abstract class Spell : MonoBehaviour
 {
     public float livingDuration;
     public float damage ;
@@ -16,14 +16,23 @@ public class Spell : MonoBehaviour
     private float sizeInit;
     public bool alreadyLoadedInit = false;
     [SerializeField] protected int spellNumber;
+
     // Start is called before the first frame update
     void Start()
     {
-        transform.localScale *= size;
+        SpellInit();
+    }
+
+    void Update()
+    {
+        if (GameManager.instance)
+            if (GameManager.instance.isPlaying)
+                transform.Translate(speed * Time.deltaTime * Vector2.up);
     }
     protected void SpellInit()
     {
-        if(GameManager.instance.isPlaying)
+        transform.localScale *= size;
+        if (GameManager.instance.isPlaying)
         {
             AudioManager.instance.PlaySpellAudioClip(spellNumber);
             StartCoroutine(TimeDestruction());
@@ -56,5 +65,11 @@ public class Spell : MonoBehaviour
             sizeInit = size;
             alreadyLoadedInit = true;
         }
+    }
+
+    // Called when spell is hitting a ghost
+    public virtual void SpellHit()
+    {
+        // Nothing happens for the spell
     }
 }

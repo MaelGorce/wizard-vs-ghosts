@@ -41,28 +41,17 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        // ABSTRACTION
         if (isAlive && GameManager.instance.isPlaying)
         {
-            movingVector.x = Input.GetAxis("Horizontal");
-            movingVector.y = Input.GetAxis("Vertical");
-            if ( (movingVector.x > 0 && child.transform.rotation.y < 0.01) ||
-                 (movingVector.x < 0 && child.transform.rotation.y > 0.99 ) )
-                child.transform.Rotate(Vector3.up * 180);
-
-            if(movingVector.magnitude > 1)
-                movingVector.Normalize();
-            
-            rigidBody.velocity = movingVector * speed;
+            MoveWithInput();
 
             if (Input.GetMouseButton(1))
             {
                 //Right mouse click
                 if (!isAttackingSpell1)
                 {
-                    animator.SetTrigger("attack");
-                    isAttackingSpell1 = true;
-                    StartCoroutine(CoolDownSpell1(Spell1.GetComponent<Spell>().coolDown));
-                    StartCoroutine(Spell1Delayed(0.22f, GetAngleSpell()));
+                    FireBall();
                 }
 
             }
@@ -72,16 +61,45 @@ public class PlayerController : MonoBehaviour
                 // TODO : Is not on Pause button
                 if(!isAttackingSpell2)
                 {
-                    animator.SetTrigger("attack02");
-                    isAttackingSpell2 = true;
-                    StartCoroutine(CoolDownSpell2(Spell2.GetComponent<Spell>().coolDown));
-                    StartCoroutine(Spell2Delayed(0.32f, GetAngleSpell()));
+                    FireSlash();
                 }
             }
         }
         else
-            rigidBody.velocity = movingVector * 0;
+            rigidBody.velocity = movingVector * 0; // While in pause
 
+    }
+
+    private void MoveWithInput()
+    {
+        movingVector.x = Input.GetAxis("Horizontal");
+        movingVector.y = Input.GetAxis("Vertical");
+        if ((movingVector.x > 0 && child.transform.rotation.y < 0.01) ||
+             (movingVector.x < 0 && child.transform.rotation.y > 0.99))
+        {
+            Debug.Log("ici x : " +  movingVector.x + " ; y : " +movingVector.y);
+            child.transform.Rotate(Vector3.up * 180);
+        }
+
+        if (movingVector.magnitude > 1)
+            movingVector.Normalize();
+
+        rigidBody.velocity = movingVector * speed;
+    }
+
+    private void FireBall()
+    {
+        animator.SetTrigger("attack");
+        isAttackingSpell1 = true;
+        StartCoroutine(CoolDownSpell1(Spell1.GetComponent<Spell>().coolDown));
+        StartCoroutine(Spell1Delayed(0.22f, GetAngleSpell()));
+    }
+    private void FireSlash()
+    {
+        animator.SetTrigger("attack02");
+        isAttackingSpell2 = true;
+        StartCoroutine(CoolDownSpell2(Spell2.GetComponent<Spell>().coolDown));
+        StartCoroutine(Spell2Delayed(0.32f, GetAngleSpell()));
     }
     IEnumerator CoolDownSpell1(float coolDownTime)
     {
@@ -97,15 +115,21 @@ public class PlayerController : MonoBehaviour
     IEnumerator Spell1Delayed(float coolDownTime,float angle)
     {
         yield return new WaitForSeconds(coolDownTime);
-        spellAngle.z = angle;
-        Instantiate(Spell1, (transform.position + (Vector3)playerCenter ), Quaternion.Euler(spellAngle));
+        if (GameManager.instance.isPlaying)
+        {
+            spellAngle.z = angle;
+            Instantiate(Spell1, (transform.position + (Vector3)playerCenter ), Quaternion.Euler(spellAngle));
+        }
     }
 
     IEnumerator Spell2Delayed(float coolDownTime, float angle)
     {
         yield return new WaitForSeconds(coolDownTime);
-        spellAngle.z = angle;
-        Instantiate(Spell2, (transform.position + (Vector3)playerCenter), Quaternion.Euler(spellAngle));
+        if (GameManager.instance.isPlaying)
+        {
+            spellAngle.z = angle;
+            Instantiate(Spell2, (transform.position + (Vector3)playerCenter), Quaternion.Euler(spellAngle));
+        }
     }
 
 

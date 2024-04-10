@@ -76,13 +76,9 @@ public class Ghost : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("FireBall"))
+        if (collision.GetComponent<Spell>() != null)
         {
-            Destroy(collision.gameObject);
-            Damaged(collision.gameObject.GetComponent<Spell>().damage);
-        }
-        else if (collision.gameObject.CompareTag("FireSlash"))
-        {
+            collision.GetComponent<Spell>().SpellHit();
             Damaged(collision.gameObject.GetComponent<Spell>().damage);
         }
     }

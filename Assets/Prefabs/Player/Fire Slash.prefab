@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8904617927863425473}
   - component: {fileID: 8904617927863425472}
   - component: {fileID: 2688743914230510818}
-  - component: {fileID: 5917691055011448109}
   - component: {fileID: -8701647186725283815}
+  - component: {fileID: 2375794168714135071}
   m_Layer: 17
   m_Name: Fire Slash
   m_TagString: FireSlash
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1922758093
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 60
   m_Sprite: {fileID: 21300000, guid: 335febaa43cbe214fb15c5b0db897e1c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -108,25 +108,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &5917691055011448109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8904617927863425487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 361a7904e26fcf848a52bac20e937ccd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  livingDuration: 0.7
-  damage: 10
-  speed: 2
-  coolDown: 1.5
-  size: 1
-  alreadyLoadedInit: 0
-  spellNumber: 2
 --- !u!68 &-8701647186725283815
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -162,3 +143,22 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &2375794168714135071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8904617927863425487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5768440a1f50b14bb01ce33337a04b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  livingDuration: 0.7
+  damage: 10
+  speed: 2
+  coolDown: 1.5
+  size: 1
+  alreadyLoadedInit: 0
+  spellNumber: 2
