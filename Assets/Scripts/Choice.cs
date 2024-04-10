@@ -68,43 +68,43 @@ public class Choice : MonoBehaviour
                 imageSprite = playerSprite;
                 break;
             case EChoosingAugment.eSpell1CD:
-                headerText = "Fire Ball CD";
+                headerText = "Fire Ball CoolDown";
                 descriptionText = "Fire Ball will be faster to cast";
                 imageSprite = fireBallSprite;
                 break;
             case EChoosingAugment.eSpell1Damage:
                 headerText = "Fire Ball Damage";
-                descriptionText = "";
+                descriptionText = "Fire Ball will deal more damage";
                 imageSprite = fireBallSprite;
                 break;
             case EChoosingAugment.eSpell1LivingDuration:
                 headerText = "Fire Ball range";
-                descriptionText = "";
+                descriptionText = "Fire Ball will go further";
                 imageSprite = fireBallSprite;
                 break;
             case EChoosingAugment.eSpell1Size:
                 headerText = "Fire Ball Size";
-                descriptionText = "";
+                descriptionText = "Fire Ball will be bigger";
                 imageSprite = fireBallSprite;
                 break;
             case EChoosingAugment.eSpell2CD:
-                headerText = "Fire Slash CD";
+                headerText = "Fire Slash CoolDown";
                 descriptionText = "Fire Slash will be faster to cast";
                 imageSprite = fireSlashSprite;
                 break;
             case EChoosingAugment.eSpell2Damage:
                 headerText = "Fire Slash Damage";
-                descriptionText = "";
+                descriptionText = "Fire Slash will deal more damage";
                 imageSprite = fireSlashSprite;
                 break;
             case EChoosingAugment.eSpell2LivingDuration:
                 headerText = "Fire Slash Range";
-                descriptionText = "";
+                descriptionText = "Fire Slash will go further";
                 imageSprite = fireSlashSprite;
                 break;
             case EChoosingAugment.eSpell2Size:
                 headerText = "Fire Slash Size";
-                descriptionText = "";
+                descriptionText = "Fire Slash will be bigger";
                 imageSprite = fireSlashSprite;
                 break;
             default :
