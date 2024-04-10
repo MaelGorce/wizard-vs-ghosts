@@ -62,6 +62,9 @@ TagManager:
   - name: Ghost Layer
     uniqueID: 3266005537
     locked: 0
+  - name: ArmSpellCollider
+    uniqueID: 1989248971
+    locked: 0
   - name: ArmSpellLayer
     uniqueID: 1334431415
     locked: 0
